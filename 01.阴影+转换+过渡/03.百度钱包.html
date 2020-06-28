@@ -1,14 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Document</title>
+  <style>
+    body {
+      background-color: #ff6438;
+    }
+
+    .father {
+      width: 300px;
+      height: 300px;
+      margin: 100px auto;
+      border: 1px solid #000;
+      position: relative;
+    }
+
+    .z,
+    .f {
+      width: 300px;
+      height: 300px;
+      position: absolute;
+      border: 1px solid green;
+      left: 0;
+      top: 0;
+      background: url(images/baidu.png) no-repeat left bottom;
+      transition: all 0.5s;
+      /* css3属性 隐藏被旋转的div的元素的背面 */
+      backface-visibility: hidden;
+    }
+
+    .f {
+      background-position: -305px bottom;
+      transform: rotateY(-180deg);
+      /* 先让反面到-180deg*/
+    }
+
+    .z {
+      z-index: 1;
+    }
+
+    /* 鼠标经过效果 */
+    .father:hover .z {
+      transform: rotateY(-180deg);
+    }
+
+    .father:hover .f {
+      transform: rotateY(0deg);
+    }
+  </style>
 </head>
+
 <body>
-  <div>
+  <!--
+         核心思路
+         首先正面-----从0度到-180 rotateY
+         其次背面-----从-180度到0度
     
+    -->
+  <div class="father">
+    <div class="z"></div>
+    <div class="f"></div>
   </div>
 </body>
+
 </html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    input {
+      border: none;
+      outline: none;
+      border-bottom: 1px solid #3797a4;
+      padding-bottom: 10px;
+    }
+
+    input:focus {
+      border: none;
+      padding-bottom: 0;
+      /* box-shadow：水平偏移值 垂直偏移值 模糊值 外延值 颜色 */
+      box-shadow: 0 0 0 2px yellow;
+    }
+
+
+    /* 直接将box-shadow属性设置在img标签上是没有效果的，可以用div将img包裹起来。将属性设置在div上 */
+    /* 将图片设置在底部 */
+    /* img {
+      position: relative;
+      z-index: -1;
+    }
+
+    div {
+      width: 500px;
+      height: 333px;
+      box-shadow: inset 0 0 0px 50px rgba(123, 104, 255, 0.2);
+    } */
+
+    /* 案例三的样式 */
+    div {
+      margin-left: 50px;
+      ;
+    }
+
+    img {
+      width: 200px;
+      /*单层边框*/
+      /* box-shadow: 0 0 0 10px #32e04c; */
+      /* 双边框(内层边框样式，中间的白色样式，第二层边框的左上的样式，右下的样式) */
+      box-shadow: 0 0 0 10px #32e04c,
+        0 0 0 30px white,
+        -40px -40px #ff9595,
+        40px 40px #ff9595;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 面试的时候面试官会问如何不适用border,来绘制边框（这道题其实在考box-shadow） -->
+  <!-- 案例一：在用户输入内容的时候显示边框来提示用户 -->
+  <input type="text" name="" id="" placeholder="请在这里输入您的姓名">
+
+  <br />
+  <br />
+  <br />
+
+  <!-- 案例二：给图片内部加个阴影（美化图片） -->
+  <!-- <section>
+    <div>
+      <img src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3452052593,2164461382&fm=26&gp=0.jpg" alt="">
+    </div>
+    <p>Photo By yatingFeng</p>
+  </section> -->
+
+
+  <!-- 案例三：给一张图片添加拍摄效果的边框 -->
+  <div>
+    <img
+      src="https://ss0.bdstatic.com/-0U0b8Sm1A5BphGlnYG/kmarketingadslogo/2babefb48ff292c2f0961aead316bc27_250_250.jpg"
+      alt="">
+  </div>
+</body>
+
+</html>
