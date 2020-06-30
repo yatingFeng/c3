@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      /* 因为css中的text-overflow：elipsis只适用于单行文本,所以浏览器就制作各种私有属性来实现效果 */
+      /* 方法一：使用私有属性来设置 优点：简洁明了；缺点：私有属性*/
+      .p1 {
+        height: 80px;
+        border: 2px solid yellow;
+        overflow: hidden; /*把多余的文本隐藏掉*/
+        display: -webkit-box; /*自适应布局*/
+        -webkit-box-orient: vertical; /*盒子内部元素的排列方向为垂直*/
+        -webkit-line-clamp: 4; /*设置第4行后开始省略*/
+      }
+      /* 方法二:用伪元素创建一个文本 优点：CSS规范（不用担心私有属性跨浏览器的问题） 
+      缺点：背景是纯色可以，是图片的话不好弄*/
+      .p2 {
+        height: 80px;
+        border: 2px solid yellow;
+        overflow: hidden;
+        position: relative;
+        padding-right: 1em; /*设置省略号距离内容一段距离*/
+        text-align: justify; /*文本对齐*/
+      }
+      .p2::before {
+        content: "...";
+        position: absolute; /*将文本放在右下角*/
+        right: 0;
+        bottom: 0;
+      }
+      /* 再创建一个伪元素，当不需要省略号出现的时候，覆盖掉省略号 */
+      .p2::after {
+        content: "";
+        width: 1em;
+        height: 1em;
+        background: blue; /*这里设置颜色为背景色就可以了*/
+        position: absolute; /*将文本放在右下角*/
+        display: inline;
+        right: 0;
+        margin-top: 0.5em;
+      }
+      /* 方法三:使用伪类创建一个渐变的方块来挡住最后的文字不用担心不需要省略号的时候省略号出现*/
+      /*优点：CSS规范 缺点：当背景是图片的时候就很难弄*/
+      .p3 {
+        height: 80px;
+        border: 2px solid yellow;
+        overflow: hidden;
+        position: relative;
+        text-align: justify; /*文本对齐*/
+      }
+      .p3::after {
+        content: "";
+        position: absolute;
+        height: 1.2em;
+        width: 20%;
+        background: linear-gradient(
+          to right,
+          rgba(255, 255, 255, 0),
+          #f6acc8 80% /*只需将这里的颜色改为和背景颜色一样即可*/
+        );
+        right: 0;
+        bottom: 0;
+        margin-bottom: 0.2em;
+      }
+    </style>
+  </head>
+
+  <body>
+    <p class="p1">
+      文字是人类用表义符号记录表达信息以传之久远的方式和工具。现代文字大多是记录语言的工具。人类往往先有口头的语言后产生书面文字，很多小语种，有语言但没有文字。文字的不同体现了国家和民族的书面表达的方式和思维不同。文字使人类进入有历史记录的文明社会。
+      文字是人类用表义符号记录表达信息以传之久远的方式和工具。现代文字大多是记录语言的工具。人类往往先有口头的语言后产生书面文字，很多小语种，有语言但没有文字。文字的不同体现了国家和民族的书面表达的方式和思维不同。文字使人类进入有历史记录的文明社会。
+    </p>
+    <p class="p2">
+      文字是人类用表义符号记录表达信息以传之久远的方式和工具。现代文字大多是记录语言的工具。人类往往先有口头的语言后产生书面文字，很多小语种，有语言但没有文字。文字的不同体现了国家和民族的书面表达的方式和思维不同。文字使人类进入有历史记录的文明社会。
+      文字是人类用表义符号记录表达信息以传之久远的方式和工具。现代文字大多是记录语言的工具。人类往往先有口头的语言后产生书面文字，很多小语种，有语言但没有文字。文字的不同体现了国家和民族的书面表达的方式和思维不同。文字使人类进入有历史记录的文明社会。
+    </p>
+    <p class="p3">
+      文字是人类用表义符号记录表达信息以传之久远的方式和工具。现代文字大多是记录语言的工具。人类往往先有口头的语言后产生书面文字，很多小语种，有语言但没有文字。文字的不同体现了国家和民族的书面表达的方式和思维不同。文字使人类进入有历史记录的文明社会。
+      文字是人类用表义符号记录表达信息以传之久远的方式和工具。现代文字大多是记录语言的工具。人类往往先有口头的语言后产生书面文字，很多小语种，有语言但没有文字。文字的不同体现了国家和民族的书面表达的方式和思维不同。文字使人类进入有历史记录的文明社会。
+    </p>
+  </body>
+</html>
